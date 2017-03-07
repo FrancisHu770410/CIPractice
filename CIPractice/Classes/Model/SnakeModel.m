@@ -10,4 +10,13 @@
 
 @implementation SnakeModel
 
++ (SnakeModel*) sharedSnakeModel {
+    static SnakeModel *snakeModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        snakeModel = [[SnakeModel alloc] init];
+    });
+    return snakeModel;
+}
+
 @end

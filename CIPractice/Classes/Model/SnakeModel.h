@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, SnakeMoveDirection) {
 @property (nonatomic, strong) NSMutableArray *pointsArray;
 @property (nonatomic, assign) SnakeMoveDirection direction;
 
++ (SnakeModel*) sharedSnakeModel;
+
 - (void) moveSnake;
 - (void) growUpSnakeLength;
 - (BOOL) checkDidSuicide;
