@@ -10,6 +10,15 @@
 
 @implementation FruitModel
 
++ (FruitModel*) sharedFruitModel {
+    static FruitModel *fruitModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fruitModel = [[FruitModel alloc] init];
+    });
+    return fruitModel;
+}
+
 - (void) createNewFruit {
     int widthInt = [UIScreen mainScreen].bounds.size.width;
     int heightInt = [UIScreen mainScreen].bounds.size.height;

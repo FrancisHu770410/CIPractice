@@ -13,6 +13,8 @@
 
 @property (nonatomic) CGPoint fruitCenter;
 
++ (FruitModel*) sharedFruitModel;
+
 - (void) createNewFruit;
 
 @end
