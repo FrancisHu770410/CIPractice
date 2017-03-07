@@ -7,6 +7,7 @@
 //
 
 #import "SnakeModel.h"
+#import <UIKit/UIKit.h>
 
 @implementation SnakeModel
 
@@ -17,6 +18,52 @@
         snakeModel = [[SnakeModel alloc] init];
     });
     return snakeModel;
+}
+
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        NSValue *value = [NSValue valueWithCGPoint:CGPointMake(150.0, 150.0)];
+        NSValue *secondValue = [NSValue valueWithCGPoint:CGPointMake(160.0, 150.0)];
+        self.pointsArray = [NSMutableArray arrayWithArray:@[value, secondValue]];
+        self.direction = SnakeMoveDirectionRight;
+    }
+    return self;
+}
+
+- (void) growUpSnakeLength {
+
+}
+
+- (void) moveSnake {
+    NSMutableArray *newPointArray = [NSMutableArray array];
+    for (NSValue *pointValue in self.pointsArray) {
+        double newX = pointValue.CGPointValue.x;
+        double newY = pointValue.CGPointValue.y;
+        switch (self.direction) {
+            case SnakeMoveDirectionRight:
+                newX += 10;
+                break;
+            case SnakeMoveDirectionLeft:
+                newX -= 10;
+                break;
+            case SnakeMoveDirectionUp:
+                newY -= 10;
+                break;
+            case SnakeMoveDirectionDown:
+                newY += 10;
+                break;
+            default:
+                break;
+        }
+        NSValue *newPointValue = [NSValue valueWithCGPoint:CGPointMake(newX, newY)];
+        [newPointArray addObject:newPointValue];
+    }
+    self.pointsArray = newPointArray;
+}
+
+- (BOOL) checkDidSuicide {
+    return false;
 }
 
 @end

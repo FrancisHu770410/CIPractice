@@ -9,10 +9,13 @@
 #import "MainController.h"
 #import "MainView.h"
 #import "FruitModel.h"
+#import "SnakeModel.h"
 
 @interface MainController () <RefreshViewDelegate>
 
 @property (nonatomic, strong) MainView *mainView;
+@property (nonatomic, strong) FruitModel *fruitModel;
+@property (nonatomic, strong) SnakeModel *snakeModel;
 
 @end
 
@@ -23,18 +26,31 @@
     self.mainView  = [[MainView alloc] initWithFrame:self.view.frame];
     self.view = self.mainView;
     
+    self.fruitModel = [FruitModel sharedFruitModel];
+    self.snakeModel = [SnakeModel sharedSnakeModel];
+    
     self.mainView.refreshDelegate = self;
+    
+    [self firedTimer];
+}
+
+- (void) firedTimer {
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshAction) userInfo:nil repeats:true];
+    NSRunLoop *runner = [NSRunLoop currentRunLoop];
+    [runner addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+
+- (void) refreshAction {
+    [self.snakeModel moveSnake];
     [self.mainView setNeedsDisplay];
 }
 
 - (CGPoint) shouldRefreshFruitAtPoint {
-    return [FruitModel sharedFruitModel].fruitCenter;
+    return self.fruitModel.fruitCenter;
 }
 
 - (NSArray*) shouldRefreshSnakeAtPointArray {
-    NSValue *testValue = [NSValue valueWithCGPoint:CGPointMake(200, 100)];
-    NSValue *test2Value = [NSValue valueWithCGPoint:CGPointMake(200, 110)];
-    return @[testValue, test2Value];
+    return self.snakeModel.pointsArray;
 }
 
 - (void)didReceiveMemoryWarning {
