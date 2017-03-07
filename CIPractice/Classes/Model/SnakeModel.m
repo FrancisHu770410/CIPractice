@@ -7,7 +7,6 @@
 //
 
 #import "SnakeModel.h"
-#import <UIKit/UIKit.h>
 
 @implementation SnakeModel
 
@@ -26,7 +25,7 @@
         NSValue *value = [NSValue valueWithCGPoint:CGPointMake(150.0, 150.0)];
         NSValue *secondValue = [NSValue valueWithCGPoint:CGPointMake(160.0, 150.0)];
         self.pointsArray = [NSMutableArray arrayWithArray:@[value, secondValue]];
-        self.direction = SnakeMoveDirectionRight;
+        self.direction = UISwipeGestureRecognizerDirectionRight;
     }
     return self;
 }
@@ -36,16 +35,16 @@
     double newX = pointValue.CGPointValue.x;
     double newY = pointValue.CGPointValue.y;
     switch (self.direction) {
-        case SnakeMoveDirectionRight:
+        case UISwipeGestureRecognizerDirectionRight:
             newX -= 10;
             break;
-        case SnakeMoveDirectionLeft:
+        case UISwipeGestureRecognizerDirectionLeft:
             newX += 10;
             break;
-        case SnakeMoveDirectionUp:
+        case UISwipeGestureRecognizerDirectionUp:
             newY += 10;
             break;
-        case SnakeMoveDirectionDown:
+        case UISwipeGestureRecognizerDirectionDown:
             newY -= 10;
             break;
         default:
@@ -61,16 +60,16 @@
     double newX = pointValue.CGPointValue.x;
     double newY = pointValue.CGPointValue.y;
     switch (self.direction) {
-        case SnakeMoveDirectionRight:
+        case UISwipeGestureRecognizerDirectionRight:
             newX += 10;
             break;
-        case SnakeMoveDirectionLeft:
+        case UISwipeGestureRecognizerDirectionLeft:
             newX -= 10;
             break;
-        case SnakeMoveDirectionUp:
+        case UISwipeGestureRecognizerDirectionUp:
             newY -= 10;
             break;
-        case SnakeMoveDirectionDown:
+        case UISwipeGestureRecognizerDirectionDown:
             newY += 10;
             break;
         default:

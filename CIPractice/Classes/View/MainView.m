@@ -8,14 +8,42 @@
 
 #import "MainView.h"
 
+@interface MainView()
+
+@end
+
 @implementation MainView
 
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        
+        UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeAction:)];
+        [swipeUpGesture setNumberOfTouchesRequired:1];
+        [swipeUpGesture setDirection:UISwipeGestureRecognizerDirectionUp];
+        [self addGestureRecognizer:swipeUpGesture];
+        
+        UISwipeGestureRecognizer *swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeAction:)];
+        [swipeDownGesture setNumberOfTouchesRequired:1];
+        [swipeDownGesture setDirection:UISwipeGestureRecognizerDirectionDown];
+        [self addGestureRecognizer:swipeDownGesture];
+        
+        UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeAction:)];
+        [swipeRightGesture setNumberOfTouchesRequired:1];
+        [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+        [self addGestureRecognizer:swipeRightGesture];
+        
+        UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipeAction:)];
+        [swipeLeftGesture setNumberOfTouchesRequired:1];
+        [swipeLeftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [self addGestureRecognizer:swipeLeftGesture];
     }
     return self;
+}
+
+- (void) didSwipeAction:(UISwipeGestureRecognizer*)gesture {
+    [self.refreshDelegate didChangeDirectionWithSwipeDirection:gesture.direction];
 }
 
 - (void) drawRect:(CGRect)rect {

@@ -53,6 +53,10 @@
     return self.snakeModel.pointsArray;
 }
 
+- (void) didChangeDirectionWithSwipeDirection:(UISwipeGestureRecognizerDirection)direction {
+    self.snakeModel.direction = direction;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

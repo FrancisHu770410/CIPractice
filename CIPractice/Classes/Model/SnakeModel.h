@@ -7,18 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSUInteger, SnakeMoveDirection) {
-    SnakeMoveDirectionUp = 0,
-    SnakeMoveDirectionDown,
-    SnakeMoveDirectionLeft,
-    SnakeMoveDirectionRight,
-};
+#import <UIKit/UIKit.h>
 
 @interface SnakeModel : NSObject
 
 @property (nonatomic, strong) NSMutableArray *pointsArray;
-@property (nonatomic, assign) SnakeMoveDirection direction;
+@property (nonatomic, assign) UISwipeGestureRecognizerDirection direction;
 
 + (SnakeModel*) sharedSnakeModel;
 

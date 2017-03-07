@@ -13,6 +13,7 @@
 @required
 - (CGPoint) shouldRefreshFruitAtPoint;
 - (NSArray*) shouldRefreshSnakeAtPointArray;
+- (void) didChangeDirectionWithSwipeDirection:(UISwipeGestureRecognizerDirection)direction;
 
 @end
 
