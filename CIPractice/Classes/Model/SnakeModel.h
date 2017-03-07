@@ -10,4 +10,6 @@
 
 @interface SnakeModel : NSObject
 
+@property (nonatomic, assign) double length;
+
 @end
