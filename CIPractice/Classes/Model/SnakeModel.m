@@ -32,34 +32,32 @@
 }
 
 - (void) growUpSnakeLength {
-
+    
 }
 
 - (void) moveSnake {
-    NSMutableArray *newPointArray = [NSMutableArray array];
-    for (NSValue *pointValue in self.pointsArray) {
-        double newX = pointValue.CGPointValue.x;
-        double newY = pointValue.CGPointValue.y;
-        switch (self.direction) {
-            case SnakeMoveDirectionRight:
-                newX += 10;
-                break;
-            case SnakeMoveDirectionLeft:
-                newX -= 10;
-                break;
-            case SnakeMoveDirectionUp:
-                newY -= 10;
-                break;
-            case SnakeMoveDirectionDown:
-                newY += 10;
-                break;
-            default:
-                break;
-        }
-        NSValue *newPointValue = [NSValue valueWithCGPoint:CGPointMake(newX, newY)];
-        [newPointArray addObject:newPointValue];
+    NSValue *pointValue = self.pointsArray[0];
+    double newX = pointValue.CGPointValue.x;
+    double newY = pointValue.CGPointValue.y;
+    switch (self.direction) {
+        case SnakeMoveDirectionRight:
+            newX += 10;
+            break;
+        case SnakeMoveDirectionLeft:
+            newX -= 10;
+            break;
+        case SnakeMoveDirectionUp:
+            newY -= 10;
+            break;
+        case SnakeMoveDirectionDown:
+            newY += 10;
+            break;
+        default:
+            break;
     }
-    self.pointsArray = newPointArray;
+    NSValue *newPointValue = [NSValue valueWithCGPoint:CGPointMake(newX, newY)];
+    [self.pointsArray insertObject:newPointValue atIndex:0];
+    [self.pointsArray removeLastObject];
 }
 
 - (BOOL) checkDidSuicide {
