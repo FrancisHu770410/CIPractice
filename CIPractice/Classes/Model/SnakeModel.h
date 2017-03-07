@@ -8,8 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, SnakeMoveDirection) {
+    SnakeMoveDirectionUp = 0,
+    SnakeMoveDirectionDown,
+    SnakeMoveDirectionLeft,
+    SnakeMoveDirectionRight,
+};
+
 @interface SnakeModel : NSObject
 
-@property (nonatomic, assign) double length;
+@property (nonatomic, strong) NSMutableArray *pointsArray;
+@property (nonatomic, assign) SnakeMoveDirection direction;
+
+- (void) moveSnake;
+- (void) growUpSnakeLength;
+- (BOOL) checkDidSuicide;
 
 @end

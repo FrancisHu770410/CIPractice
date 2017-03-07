@@ -16,6 +16,7 @@
 		3994E96C1E6E840200A0CCD3 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994E96B1E6E840200A0CCD3 /* MainController.m */; };
 		3994E96F1E6E841100A0CCD3 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994E96E1E6E841100A0CCD3 /* MainView.m */; };
 		3994E9721E6E842E00A0CCD3 /* SnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994E9711E6E842E00A0CCD3 /* SnakeModel.m */; };
+		3994E9751E6E8B8A00A0CCD3 /* FruitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994E9741E6E8B8A00A0CCD3 /* FruitModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		3994E96E1E6E841100A0CCD3 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		3994E9701E6E842E00A0CCD3 /* SnakeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeModel.h; sourceTree = "<group>"; };
 		3994E9711E6E842E00A0CCD3 /* SnakeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakeModel.m; sourceTree = "<group>"; };
+		3994E9731E6E8B8A00A0CCD3 /* FruitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FruitModel.h; sourceTree = "<group>"; };
+		3994E9741E6E8B8A00A0CCD3 /* FruitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FruitModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 			children = (
 				3994E9701E6E842E00A0CCD3 /* SnakeModel.h */,
 				3994E9711E6E842E00A0CCD3 /* SnakeModel.m */,
+				3994E9731E6E8B8A00A0CCD3 /* FruitModel.h */,
+				3994E9741E6E8B8A00A0CCD3 /* FruitModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				3994E96F1E6E841100A0CCD3 /* MainView.m in Sources */,
 				3994E96C1E6E840200A0CCD3 /* MainController.m in Sources */,
 				393762491E60175D00623BBD /* main.m in Sources */,
+				3994E9751E6E8B8A00A0CCD3 /* FruitModel.m in Sources */,
 				3994E9721E6E842E00A0CCD3 /* SnakeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
