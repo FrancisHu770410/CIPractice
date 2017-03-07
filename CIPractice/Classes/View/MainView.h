@@ -10,6 +10,7 @@
 
 @interface MainView : UIView
 
-- (void) drawFruit;
+- (void) refreshDrawFruitWithPoint:(CGPoint)fruitPoint;
+- (void) refreshDrawSnakeWithPoints:(NSArray*)pointArray;
 
 @end

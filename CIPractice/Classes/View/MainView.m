@@ -10,12 +10,18 @@
 
 @implementation MainView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void) drawRect:(CGRect)rect {
+//    [self refreshDrawFruitWithPoint:CGPointMake(0, 0)];
 }
-*/
+
+- (void) refreshDrawFruitWithPoint:(CGPoint)fruitPoint {
+    UIView *fruitView = [[UIView alloc] initWithFrame:CGRectMake(fruitPoint.x - 1.0, fruitPoint.y - 1.0, 2.0, 2.0)];
+    fruitView.backgroundColor = [UIColor blackColor];
+    [self addSubview:fruitView];
+}
+
+- (void) refreshDrawSnakeWithPoints:(NSArray *)pointArray {
+    
+}
 
 @end
