@@ -32,7 +32,28 @@
 }
 
 - (void) growUpSnakeLength {
-    
+    NSValue *pointValue = [self.pointsArray lastObject];
+    double newX = pointValue.CGPointValue.x;
+    double newY = pointValue.CGPointValue.y;
+    switch (self.direction) {
+        case SnakeMoveDirectionRight:
+            newX -= 10;
+            break;
+        case SnakeMoveDirectionLeft:
+            newX += 10;
+            break;
+        case SnakeMoveDirectionUp:
+            newY += 10;
+            break;
+        case SnakeMoveDirectionDown:
+            newY -= 10;
+            break;
+        default:
+            break;
+    }
+    NSValue *newPointValue = [NSValue valueWithCGPoint:CGPointMake(newX, newY)];
+    [self.pointsArray addObject:newPointValue];
+
 }
 
 - (void) moveSnake {
