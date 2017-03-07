@@ -10,4 +10,6 @@
 
 @interface MainView : UIView
 
+- (void) drawFruit;
+
 @end
