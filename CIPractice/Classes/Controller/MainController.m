@@ -7,8 +7,11 @@
 //
 
 #import "MainController.h"
+#import "MainView.h"
 
-@interface MainController ()
+@interface MainController () <RefreshViewDelegate>
+
+@property (nonatomic, strong) MainView *mainView;
 
 @end
 
@@ -16,7 +19,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.mainView  = [[MainView alloc] initWithFrame:self.view.frame];
+    self.view = self.mainView;
+    
+    self.mainView.refreshDelegate = self;
+    [self.mainView setNeedsDisplay];
+}
+
+- (CGPoint) shouldRefreshFruitAtPoint {
+    CGPoint testPoint = CGPointMake(150, 50);
+    return testPoint;
+}
+
+- (NSArray*) shouldRefreshSnakeAtPointArray {
+    NSValue *testValue = [NSValue valueWithCGPoint:CGPointMake(200, 100)];
+    NSValue *test2Value = [NSValue valueWithCGPoint:CGPointMake(200, 110)];
+    return @[testValue, test2Value];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RefreshViewDelegate <NSObject>
+
+@required
+- (CGPoint) shouldRefreshFruitAtPoint;
+- (NSArray*) shouldRefreshSnakeAtPointArray;
+
+@end
+
 @interface MainView : UIView
 
-- (void) refreshDrawFruitWithPoint:(CGPoint)fruitPoint;
-- (void) refreshDrawSnakeWithPoints:(NSArray*)pointArray;
+@property (nonatomic, weak) id <RefreshViewDelegate> refreshDelegate;
 
 @end

@@ -10,18 +10,44 @@
 
 @implementation MainView
 
+- (instancetype) initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+    return self;
+}
+
 - (void) drawRect:(CGRect)rect {
-//    [self refreshDrawFruitWithPoint:CGPointMake(0, 0)];
+    CGPoint fruitCenter = [self.refreshDelegate shouldRefreshFruitAtPoint];
+    NSArray *snakeCenterArray = [self.refreshDelegate shouldRefreshSnakeAtPointArray];
+    [self refreshDrawFruitWithPoint:fruitCenter];
+    [self refreshDrawSnakeWithPoints:snakeCenterArray];
 }
 
 - (void) refreshDrawFruitWithPoint:(CGPoint)fruitPoint {
-    UIView *fruitView = [[UIView alloc] initWithFrame:CGRectMake(fruitPoint.x - 1.0, fruitPoint.y - 1.0, 2.0, 2.0)];
-    fruitView.backgroundColor = [UIColor blackColor];
-    [self addSubview:fruitView];
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetRGBStrokeColor(currentContext, 0, 0, 0, 1.0);
+    
+    CGContextAddArc(currentContext, fruitPoint.x, fruitPoint.y, 5.0, 0, 2 * M_PI, false);
+    CGContextDrawPath(currentContext, kCGPathFill);
 }
 
 - (void) refreshDrawSnakeWithPoints:(NSArray *)pointArray {
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetRGBStrokeColor(currentContext, 0, 0, 0, 1.0);
+    CGContextSetLineWidth(currentContext, 10.0);
+    for (int i = 0; i < pointArray.count; i++) {
+        NSValue *snakeCenter = pointArray[i];
+        CGPoint pointCenter = snakeCenter.CGPointValue;
+        if (i == 0) {
+            CGContextMoveToPoint(currentContext, pointCenter.x, pointCenter.y);
+        } else {
+            CGContextAddLineToPoint(currentContext, pointCenter.x, pointCenter.y);
+        }
+    }
     
+    CGContextDrawPath(currentContext, kCGPathStroke);
 }
 
 @end
