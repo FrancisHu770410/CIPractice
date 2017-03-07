@@ -8,6 +8,7 @@
 
 #import "MainController.h"
 #import "MainView.h"
+#import "FruitModel.h"
 
 @interface MainController () <RefreshViewDelegate>
 
@@ -27,8 +28,7 @@
 }
 
 - (CGPoint) shouldRefreshFruitAtPoint {
-    CGPoint testPoint = CGPointMake(150, 50);
-    return testPoint;
+    return [FruitModel sharedFruitModel].fruitCenter;
 }
 
 - (NSArray*) shouldRefreshSnakeAtPointArray {

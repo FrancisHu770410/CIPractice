@@ -19,11 +19,19 @@
     return fruitModel;
 }
 
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        [self createNewFruit];
+    }
+    return self;
+}
+
 - (void) createNewFruit {
     int widthInt = [UIScreen mainScreen].bounds.size.width;
     int heightInt = [UIScreen mainScreen].bounds.size.height;
-    int fruitCenterX = (arc4random() % widthInt) / 10;
-    int fruitCenterY = (arc4random() % heightInt) / 10;
+    int fruitCenterX = (arc4random() % widthInt);
+    int fruitCenterY = (arc4random() % heightInt);
     self.fruitCenter = CGPointMake(fruitCenterX, fruitCenterY);
 }
 
