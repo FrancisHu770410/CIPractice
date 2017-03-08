@@ -35,13 +35,19 @@
 }
 
 - (void) firedTimer {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshAction) userInfo:nil repeats:true];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshAction) userInfo:nil repeats:true];
     NSRunLoop *runner = [NSRunLoop currentRunLoop];
     [runner addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void) refreshAction {
     [self.snakeModel moveSnake];
+    CGPoint fruitPoint = self.fruitModel.fruitCenter;
+    BOOL isTouchFruit = [self.snakeModel didEatFruitWithFruitPoint:fruitPoint];
+    if (isTouchFruit) {
+        [self.fruitModel createNewFruit];
+        [self.snakeModel growUpSnakeLength];
+    }
     [self.mainView setNeedsDisplay];
 }
 

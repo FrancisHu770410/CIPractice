@@ -19,5 +19,6 @@
 - (void) moveSnake;
 - (void) growUpSnakeLength;
 - (BOOL) checkDidSuicide;
+- (BOOL) didEatFruitWithFruitPoint:(CGPoint)fruitPoint;
 
 @end

@@ -23,8 +23,7 @@
     self = [super init];
     if (self) {
         NSValue *value = [NSValue valueWithCGPoint:CGPointMake(150.0, 150.0)];
-        NSValue *secondValue = [NSValue valueWithCGPoint:CGPointMake(160.0, 150.0)];
-        self.pointsArray = [NSMutableArray arrayWithArray:@[value, secondValue]];
+        self.pointsArray = [NSMutableArray arrayWithArray:@[value]];
         self.direction = UISwipeGestureRecognizerDirectionRight;
     }
     return self;
@@ -52,7 +51,6 @@
     }
     NSValue *newPointValue = [NSValue valueWithCGPoint:CGPointMake(newX, newY)];
     [self.pointsArray addObject:newPointValue];
-
 }
 
 - (void) moveSnake {
@@ -82,6 +80,20 @@
 
 - (BOOL) checkDidSuicide {
     return false;
+}
+
+- (BOOL) didEatFruitWithFruitPoint:(CGPoint)fruitPoint {
+    CGPoint headCenter = [self.pointsArray[0] CGPointValue];
+    double minX = headCenter.x - 5.0;
+    double maxX = headCenter.x + 5.0;
+    double minY = headCenter.y - 5.0;
+    double maxY = headCenter.y + 5.0;
+    
+    if ((fruitPoint.x <= maxX) && (fruitPoint.x >= minX) && (fruitPoint.y >= minY) && (fruitPoint.y <= maxY)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 @end

@@ -57,7 +57,7 @@
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
     CGContextSetRGBStrokeColor(currentContext, 0, 0, 0, 1.0);
     
-    CGContextAddArc(currentContext, fruitPoint.x, fruitPoint.y, 5.0, 0, 2 * M_PI, false);
+    CGContextAddArc(currentContext, fruitPoint.x, fruitPoint.y, 2.5, 0, 2 * M_PI, false);
     CGContextDrawPath(currentContext, kCGPathFill);
 }
 
@@ -68,14 +68,11 @@
     for (int i = 0; i < pointArray.count; i++) {
         NSValue *snakeCenter = pointArray[i];
         CGPoint pointCenter = snakeCenter.CGPointValue;
-        if (i == 0) {
-            CGContextMoveToPoint(currentContext, pointCenter.x, pointCenter.y);
-        } else {
-            CGContextAddLineToPoint(currentContext, pointCenter.x, pointCenter.y);
-        }
+        CGContextMoveToPoint(currentContext, pointCenter.x - 5, pointCenter.y);
+        CGContextAddLineToPoint(currentContext, pointCenter.x + 5, pointCenter.y);
+        CGContextDrawPath(currentContext, kCGPathStroke);
     }
     
-    CGContextDrawPath(currentContext, kCGPathStroke);
 }
 
 @end
