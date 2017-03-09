@@ -28,10 +28,10 @@
 }
 
 - (void) createNewFruit {
-    int widthInt = [UIScreen mainScreen].bounds.size.width;
-    int heightInt = [UIScreen mainScreen].bounds.size.height;
-    int fruitCenterX = (arc4random() % widthInt);
-    int fruitCenterY = (arc4random() % heightInt);
+    int widthInt = [UIScreen mainScreen].bounds.size.width - 10;
+    int heightInt = [UIScreen mainScreen].bounds.size.height - 10;
+    int fruitCenterX = (arc4random() % widthInt) + 10;
+    int fruitCenterY = (arc4random() % heightInt) + 10;
     self.fruitCenter = CGPointMake(fruitCenterX, fruitCenterY);
 }
 
