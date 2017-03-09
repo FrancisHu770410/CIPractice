@@ -50,9 +50,11 @@
     [self.snakeModel moveSnake];
     CGPoint fruitPoint = self.fruitModel.fruitCenter;
     BOOL isTouchFruit = [self.snakeModel didEatFruitWithFruitPoint:fruitPoint];
-    if (isTouchFruit) {
+    while (isTouchFruit) {
         [self.fruitModel createNewFruit];
         [self.snakeModel growUpSnakeLength];
+        fruitPoint = self.fruitModel.fruitCenter;
+        isTouchFruit = [self.snakeModel didEatFruitWithFruitPoint:fruitPoint];
     }
     
     BOOL isSuicide = [self.snakeModel checkDidSuicide];
