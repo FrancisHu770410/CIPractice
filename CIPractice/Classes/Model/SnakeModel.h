@@ -16,6 +16,7 @@
 
 + (SnakeModel*) sharedSnakeModel;
 
+- (void) rebornSnake;
 - (void) moveSnake;
 - (void) growUpSnakeLength;
 - (BOOL) checkDidSuicide;

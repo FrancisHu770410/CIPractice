@@ -22,9 +22,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        NSValue *value = [NSValue valueWithCGPoint:CGPointMake(150.0, 150.0)];
-        self.pointsArray = [NSMutableArray arrayWithArray:@[value]];
-        self.direction = UISwipeGestureRecognizerDirectionRight;
+        [self rebornSnake];
     }
     return self;
 }
@@ -79,7 +77,26 @@
 }
 
 - (BOOL) checkDidSuicide {
-    return false;
+    double headX = [self.pointsArray[0] CGPointValue].x;
+    double headY = [self.pointsArray[0] CGPointValue].y;
+    
+    BOOL result = false;
+    
+    if ((headX <= 0) || (headX >= [UIScreen mainScreen].bounds.size.width) || (headY <= 0) || (headY >= [UIScreen mainScreen].bounds.size.height)) {
+        result = true;
+    } else {
+        for (int i = 0; i < self.pointsArray.count; i++) {
+            if (i != 0) {
+                double bodyX = [self.pointsArray[i] CGPointValue].x;
+                double bodyY = [self.pointsArray[i] CGPointValue].y;
+                if (headX == bodyX && headY == bodyY) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+    }
+    return result;
 }
 
 - (BOOL) didEatFruitWithFruitPoint:(CGPoint)fruitPoint {
@@ -94,6 +111,12 @@
     } else {
         return false;
     }
+}
+
+- (void) rebornSnake {
+    NSValue *value = [NSValue valueWithCGPoint:CGPointMake(150.0, 150.0)];
+    self.pointsArray = [NSMutableArray arrayWithArray:@[value]];
+    self.direction = UISwipeGestureRecognizerDirectionRight;
 }
 
 @end

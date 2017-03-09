@@ -16,6 +16,7 @@
 @property (nonatomic, strong) MainView *mainView;
 @property (nonatomic, strong) FruitModel *fruitModel;
 @property (nonatomic, strong) SnakeModel *snakeModel;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -35,9 +36,14 @@
 }
 
 - (void) firedTimer {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshAction) userInfo:nil repeats:true];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshAction) userInfo:nil repeats:true];
     NSRunLoop *runner = [NSRunLoop currentRunLoop];
-    [runner addTimer:timer forMode:NSDefaultRunLoopMode];
+    [runner addTimer:self.timer forMode:NSDefaultRunLoopMode];
+}
+
+- (void) stopTimer {
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void) refreshAction {
@@ -47,6 +53,21 @@
     if (isTouchFruit) {
         [self.fruitModel createNewFruit];
         [self.snakeModel growUpSnakeLength];
+    }
+    
+    BOOL isSuicide = [self.snakeModel checkDidSuicide];
+    if (isSuicide) {
+        [self stopTimer];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"系統訊息" message:@"You dead" preferredStyle:UIAlertControllerStyleAlert];
+        __weak typeof(self) weakSelf = self;
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alertController dismissViewControllerAnimated:true completion:nil];
+            [weakSelf.snakeModel rebornSnake];
+            [weakSelf.fruitModel createNewFruit];
+            [weakSelf firedTimer];
+        }];
+        [alertController addAction:alertAction];
+        [self presentViewController:alertController animated:true completion:nil];
     }
     [self.mainView setNeedsDisplay];
 }
