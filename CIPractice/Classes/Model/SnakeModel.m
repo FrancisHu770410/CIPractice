@@ -82,7 +82,7 @@
     
     BOOL result = false;
     
-    if ((headX <= 0) || (headX >= [UIScreen mainScreen].bounds.size.width) || (headY <= 0) || (headY >= [UIScreen mainScreen].bounds.size.height)) {
+    if ((headX <= 0) || (headX >= [UIScreen mainScreen].bounds.size.width - 5.0) || (headY <= 0) || (headY >= [UIScreen mainScreen].bounds.size.height - 5.0)) {
         result = true;
     } else {
         for (int i = 0; i < self.pointsArray.count; i++) {
